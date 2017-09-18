@@ -19,12 +19,12 @@ public class KarateChop {
         highPoint = (listOfValues.length - 1);
         if (highPoint == FAILED_SEARCH) return highPoint;
         Arrays.sort(listOfValues);
-        return searchList(target, listOfValues, (int) (highPoint / HALF));
+        return searchList(target, listOfValues, (highPoint / HALF));
     }
 
     private int searchList(int target, int[] listOfValues, int half) {
         do {
-            if (checkHalf(target, listOfValues, half)) return half;
+            if (listOfValues[half] == target) return half;
             half = findNextHalfPoint(target, listOfValues, half);
             searchCounter++;
         } while (half != FAILED_SEARCH);
@@ -43,7 +43,7 @@ public class KarateChop {
 
     private int setHalfLower(int half) {
         highPoint = half;
-        half = (int) half / HALF;
+        half = half / HALF;
         return half;
     }
 
@@ -52,12 +52,7 @@ public class KarateChop {
         // but rounding will mean you'll continue to select that one.
         // This line forces you to check the end of the list
         if (half == highPoint - 1) half = highPoint;
-        else half += (int) (highPoint - half) / HALF;
+        else half += (highPoint - half) / HALF;
         return half;
-    }
-
-    private boolean checkHalf(int target, int[] listOfValues, int half) {
-        if (listOfValues[half] == target) return true;
-        return false;
     }
 }
