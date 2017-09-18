@@ -43,8 +43,7 @@ public class KarateChop {
 
     private int setHalfLower(int half) {
         highPoint = half;
-        half = half / HALF;
-        return half;
+        return (half / HALF);
     }
 
     private int setHalfHigher(int half) {
